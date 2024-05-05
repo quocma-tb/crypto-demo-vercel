@@ -1,0 +1,320 @@
+html {
+    * {
+        box-sizing: border-box;
+    }
+}
+
+/***********Body*********/
+body {
+    @include transition(ease .1s);
+    background-color: var(--body-color);
+    color: var(--color-500);
+    font-weight: font-weight-normal;
+    font-family: $font-Plex;
+    font-size: 15px;
+
+    &.font-opensans {
+        font-family: $font-opensans;
+    }
+
+    &.font-poppins {
+        font-family: $font-poppins;
+        font-size: 15px;
+    }
+
+    &.font-montserrat {
+        font-family: $font-montserrat;
+        font-size: 15px;
+    }
+
+    &.font-Plex {
+        font-family: $font-Plex;
+        font-size: 15px;
+    }
+
+    @media only screen and (max-width: 554px) {
+        font-size: 13px;
+    }
+
+    a {
+        color: var(--text-color);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+    }
+}
+
+/***********Invoicepage & purchasepage tab*********/
+.invoice-set {
+    &.nav-tabs {
+        .nav-link {
+            @media only screen and (max-width: $break-xxsmall) {
+                width: 100px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+/***********Changelog Button-size*********/
+.mx-size {
+    @media only screen and (min-width: 480px) {
+        max-width: 320px;
+    }
+}
+
+/***********Login-page responsive*********/
+.auth-detailblock {
+    strong {
+        @media only screen and (max-width: 480px) {
+            font-size: 12px;
+        }
+    }
+}
+
+.auth-h100 {
+    height: calc(100vh - 192px);
+
+    @media only screen and (max-width: $break-1280) {
+        height: calc(100vh - 96px);
+    }
+}
+
+/**********profile*********/
+.profile-fulldeatil {
+    @media only screen and (max-width: $break-xxsmall) {
+        flex-direction: column;
+    }
+
+    .profile-info {
+        &.border-start {
+            @media only screen and (max-width: $break-xxsmall) {
+                border-left: 0px !important;
+                padding-left: 0px !important;
+            }
+        }
+    }
+
+    .profile-av {
+        @media only screen and (max-width: $break-xxsmall) {
+            text-align: left !important;
+        }
+    }
+
+    .about-info {
+        @media only screen and (max-width: $break-xxsmall) {
+            justify-content: flex-start !important;
+        }
+    }
+}
+
+/***********Comman Row*********/
+.row-deck {
+
+    >.col,
+    >[class*='col-'] {
+        display: flex;
+        align-items: stretch;
+
+        .card {
+            flex: 1 1 auto;
+        }
+    }
+}
+
+/***********Do not add in project*********/
+:not(pre)>code[class*="language-"],
+pre[class*="language-"] {
+    background: var(--color-100) !important;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+    text-shadow: none !important;
+    color: var(--color-000) !important;
+}
+
+/***********icon-page*********/
+.ico-title {
+    font-size: 2em;
+}
+
+.iconlist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    .icon-holder {
+        position: relative;
+        text-align: center;
+        border-radius: 3px;
+        overflow: hidden;
+        padding-bottom: 5px;
+        border: 1px solid var(--border-color);
+        transition: all 0.2s linear 0s;
+
+        &:hover {
+            background: var(--secondary-color);
+            color: #ffffff;
+
+            .icon i {
+                color: #ffffff;
+            }
+        }
+
+        .icon {
+            padding: 20px;
+            text-align: center;
+
+            i {
+                font-size: 3em;
+                color: var(--font-color)
+            }
+        }
+
+        span {
+            font-size: 14px;
+            display: block;
+            margin-top: 5px;
+            border-radius: 3px;
+        }
+    }
+}
+
+/*********coupon-design******/
+.coupon {
+    .price {
+        @media (max-width: 767px) {
+            margin-bottom: 15px;
+        }
+    }
+
+    .detail {
+        border-left: 1px dashed var(--border-color);
+        position: relative;
+
+        @media (max-width: 576px) {
+            border-left: none;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 15px;
+        }
+
+        &::before,
+        &::after {
+            background: var(--body-color);
+            content: "";
+            display: block;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: -25px;
+            left: -15px;
+            z-index: 1;
+            border-radius: 50%;
+
+            @media (max-width: 576px) {
+                top: -18px;
+                left: -19px;
+            }
+        }
+
+        &::after {
+            top: auto;
+            bottom: -28px;
+
+            @media (max-width: 576px) {
+                top: -18px;
+                left: auto;
+                right: -19px;
+            }
+        }
+    }
+}
+
+/**********Priceing*********/
+.price-effect {
+    background-color: var(--dark-color) !important;
+
+    .card-body {
+        background-color: var(--border-color);
+
+        &.price-detail {
+            position: relative;
+        }
+    }
+
+}
+
+/**********Dynamic Table*********/
+.rdt_TableHeader{
+    display: none !important;   
+}
+.rdt_TableHeadRow{
+    font-weight: bold; 
+}
+.hLGqlg,.hCBnvI,.iAwKFK,.bhoXfZ{   
+    background-color: var(--card-color) !important;
+    color:var(--text-color) !important;      
+}
+.rdt_TableRow{
+    border-bottom: var(--border-color) !important;  
+    border-bottom-style: solid !important;
+    border-bottom-width: 1px !important;
+}
+.rdt_TableCell{
+    padding: 0.8rem 0.8rem;
+}
+
+/***********responsive*********/
+@media only screen and (max-width: 554px) {
+    .w-sm-100 {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .profile-user {
+        margin: 0 auto;
+        padding-right: 0px !important;
+    }
+
+    .profile-card {
+        .card-body {
+            flex-direction: column;
+
+            .profile-av {
+                padding-right: 0px !important;
+
+                &.w220 {
+                    width: 100%;
+                }
+
+                .about-info {
+                    justify-content: center !important;
+                }
+            }
+
+            .profile-info {
+                padding-left: 0px !important;
+                border-color: transparent !important;
+                text-align: center;
+
+                .social {
+                    justify-content: center;
+                }
+
+                .ct-btn-set {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

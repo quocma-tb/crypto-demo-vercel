@@ -1,0 +1,31 @@
+.icons-list .icon {
+    align-items: center;
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    text-align: center;
+}
+
+.icons-list .icon i {
+    font-size: 26px;
+    width: 30px;
+    display: inline-block;
+}
+
+.icons-list .icon .label {
+    color: var(--color-400);
+}
+
+.icons-list .icon:hover {
+    background-color: var(--primary-color);
+}
+
+.icons-list .icon:hover i,
+.icons-list .icon:hover .label {
+    color: #FFFFFF;
+}
+
+.icons-lists .icon { align-items: center; background: var(--card-color); border: 1px solid var(--border-color); padding: 10px 20px; display: flex;flex-direction: column;}
+.icons-lists .icon i { font-size: 24px; margin-bottom: 10px;}
+.icons-lists .icon:hover{background-color: var(--primary-color);}
+.icons-lists .icon:hover i{ color: #FFFFFF;}
