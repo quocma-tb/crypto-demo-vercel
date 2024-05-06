@@ -104,7 +104,7 @@ function Cryptocurrencies() {
         const searchParams = new URLSearchParams();
         searchParams.append('price_change_percentage', '1h,24h,7d')
         searchParams.append('sparkline', 'true')
-        searchParams.append('per_page', '20')
+        searchParams.append('per_page', '50')
         const coins = await fetch(`/api/coins?${searchParams.toString()}`).then(res => res.json()).finally(() => setLoading(false))
         setCoins(coins)
     }
