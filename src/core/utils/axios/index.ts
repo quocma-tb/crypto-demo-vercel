@@ -34,7 +34,7 @@ export const publicApi = axios.create({
   baseURL,
   headers: {
     'Content-Type': 'application/json',
-    'x-cg-demo-api-key': 'CG-j4o6DYYWsAKcBmvzKm6tYwKE'
+    'x-cg-demo-api-key': 'CG-wmQmhumArEsE3Ekw1PoGsyxi'
   },
 });
 
