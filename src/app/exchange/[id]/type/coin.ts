@@ -46,3 +46,8 @@ export type Coin = {
 }
 
 export type OHLCData = (number[])[]
+export type MarketData = {
+    prices:(number[])[];
+    market_caps:(number[])[];
+    total_volumes:(number[])[];
+}
