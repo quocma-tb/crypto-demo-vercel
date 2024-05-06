@@ -32,7 +32,7 @@ const cryptocurrenciesColumns : TableProps<CryptocurrenciesRow>['columns'] = [
     {
         name: "Coin",
         selector: (row: CryptocurrenciesRow) => row.name,
-        cell: (row: CryptocurrenciesRow) => <><img className="avatar rounded-circle mx-3" src={row.image} alt=""  width={24} height={24} /> <span>{row.name}</span></>,
+        cell: (row: CryptocurrenciesRow) => <Link href={`/exchange/${row.id}`}><img className="avatar rounded-circle mx-3" src={row.image} alt=""  width={24} height={24} /> <span>{row.name}</span></Link>,
         sortable: true, minWidth: "200px"
     },
     {
