@@ -3,6 +3,7 @@ import axios from 'axios';
 
 
 const baseURL = 'https://api.coingecko.com/api/v3';
+const insideURL = '';
 
 export const handleError = (error: AxiosError) => {
   const errorObjects: {
@@ -37,7 +38,20 @@ export const publicApi = axios.create({
   },
 });
 
+// for inside api
+export const insideApi = axios.create({
+  baseURL:insideURL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
 publicApi.interceptors.response.use(
+  (response) => response,
+  (error: AxiosError) => Promise.reject(handleError(error)),
+);
+
+insideApi.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => Promise.reject(handleError(error)),
 );
