@@ -4,6 +4,7 @@ import { insideApi } from '@/core/utils/axios';
 import ReactApexChart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import ChartSpinner from './ChartSpinner';
+import { convertNumberToUSD } from '../utils/currency';
 const CoinCandleStickChart = ({coin, days}:{coin:Coin, days:number;}) => {
     const [ohlcData, setOHLCData] = useState<OHLCData>([]);
     const [isLoading, setIsLoading] = useState(true)
@@ -57,7 +58,7 @@ const CoinCandleStickChart = ({coin, days}:{coin:Coin, days:number;}) => {
               opposite:true,
               labels:{
                 formatter:(val) => {
-                    return `$${val.toFixed(2)}`
+                    return convertNumberToUSD(val)
                 }
               }
             },
@@ -70,16 +71,16 @@ const CoinCandleStickChart = ({coin, days}:{coin:Coin, days:number;}) => {
                     return (
                       '<div class="apexcharts-tooltip-candlestick p-3">' +
                       '<div>Open: <span class="value fw-bold">' +
-                      `$${o}` +
+                      `${convertNumberToUSD(o)}` +
                       '</span></div>' +
                       '<div>High: <span class="value fw-bold">' +
-                      `$${h}` +
+                      `${convertNumberToUSD(h)}` +
                       '</span></div>' +
                       '<div>Low: <span class="value fw-bold">' +
-                      `$${l}` +
+                      `${convertNumberToUSD(l)}` +
                       '</span></div>' +
                       '<div>Close: <span class="value fw-bold">' +
-                      `$${c}` +
+                      `${convertNumberToUSD(c)}` +
                       '</span></div>' +
                       '</div>'
                     )

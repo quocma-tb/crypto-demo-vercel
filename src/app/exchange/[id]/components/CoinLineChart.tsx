@@ -4,6 +4,7 @@ import { insideApi } from '@/core/utils/axios';
 import ReactApexChart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 import ChartSpinner from './ChartSpinner';
+import { convertNumberToUSD } from '../utils/currency';
 const CoinLineChart = ({coin, days}:{coin:Coin, days:number}) => {
     const [priceHistoryData, setPriceHistoryData] = useState<MarketData>({
         prices:[],
@@ -33,7 +34,7 @@ const CoinLineChart = ({coin, days}:{coin:Coin, days:number}) => {
                 data:priceHistoryData.prices.map((item)=>{
                     return {
                         x:new Date(item[0]),
-                        y: Number(item[1].toFixed(2)),
+                        y: item[1],
                     }
                 })
             }
@@ -57,7 +58,7 @@ const CoinLineChart = ({coin, days}:{coin:Coin, days:number}) => {
               opposite:true,
               labels:{
                 formatter:(val) => {
-                    return `$${val.toFixed(2)}`
+                    return `${convertNumberToUSD(val)}`
                 }
               }
             }
