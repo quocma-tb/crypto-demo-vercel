@@ -10,7 +10,7 @@ function Header() {
     const [collapsebig, setCollapsebig] = useState(false);
     const [searchTrending, setSearchTrending] = useState<TrendingData>()
     const [searchKeyword, setSearchKeyword] = useState<string>('')
-    const searchKeyDebounce = useDebounce<string>(searchKeyword, 1000);
+    const searchKeyDebounce = useDebounce<string>(searchKeyword, 500);
     const [searchCoinResult, setSearchCoinResult] = useState<Coin[]>()
     
     const fetchTrendingSearchData = async () => {
