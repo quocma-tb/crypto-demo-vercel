@@ -1,4 +1,6 @@
+import { redirect } from "next/navigation";
+
 function MainPage() {
-    return <></>
+    return redirect('/dashboard')
 }
 export default MainPage;

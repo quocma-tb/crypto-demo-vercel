@@ -221,6 +221,7 @@ function BalanceDetail() {
                                         <div className="col-lg-6" style={{ position: 'relative' }}>
                                             {/* <>apex Chart here</> */}
                                             <Chart
+                                                //@ts-ignore
                                                 options={options}
                                                 series={series}
                                                 type="donut"
@@ -243,6 +244,7 @@ function BalanceDetail() {
                                         </div>
                                         <div className="col-lg-6" style={{ position: 'relative' }}>
                                             <Chart
+                                                //@ts-ignore
                                                 options={options1}
                                                 series={series1}
                                                 type="donut"
@@ -266,6 +268,7 @@ function BalanceDetail() {
                                         <div className="col-lg-6" style={{ position: 'relative' }}>
                                             {/* <>Apex chart here</> */}
                                             <Chart
+                                                //@ts-ignore
                                                 options={circlemultile}
                                                 series={seriescirclemultile}
                                                 type="radialBar"
@@ -287,6 +290,7 @@ function BalanceDetail() {
                                         <div className="col-lg-6" style={{ position: 'relative' }}>
                                             {/* <>apex chart here</>                                        */}
                                             <Chart
+                                                //@ts-ignore
                                                 options={circleGradient}
                                                 series={seriesCircleGradient}
                                                 type="radialBar"
@@ -308,6 +312,7 @@ function BalanceDetail() {
                                         <div className="col-lg-6" style={{ position: 'relative' }}>
                                             {/* <>apex chart here</>                                        */}
                                             <Chart
+                                                //@ts-ignore
                                                 options={circleChart}
                                                 series={seriesCircleChart}
                                                 type="radialBar"
