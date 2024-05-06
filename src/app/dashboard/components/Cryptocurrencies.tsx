@@ -1,9 +1,11 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import DataTable, { TableColumn, TableProps } from 'react-data-table-component';
+import DataTable, {TableProps } from 'react-data-table-component';
 import { CoinWithMarketData } from '@/app/api/coins/route';
 import Link from 'next/link'
-import Apex from './Apex';
+import dynamic from 'next/dynamic';
+
+const Apex = dynamic(() => import('./Apex'), {ssr: false})
 
 
 type CryptocurrenciesRow = CoinWithMarketData & {
