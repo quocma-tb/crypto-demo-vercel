@@ -5,6 +5,7 @@ import { insideApi } from "@/core/utils/axios";
 import { Spinner } from "react-bootstrap";
 import { Coin } from "./type/coin";
 import Image from "next/image";
+import { convertNumberToUSD } from "./utils/currency";
 ;
 
 type ExchangeProps = {
@@ -52,15 +53,20 @@ function Exchange(props:ExchangeProps) {
     return (<>
         <div className="body-header border-bottom d-flex py-3 mb-3">
             <div className="container-xxl">
-                <div className="d-flex align-items-center column-gap-2">
-                        <Image
-                            src={coin.image.small}
-                            width={24}
-                            height={24}
-                            objectFit="cover"
-                            alt={`${coin.name} image`}
-                        />
-                    <h1 className="h4 leading mt-2">{`${coin.name} Price`}</h1>
+                <div className="d-flex align-items-center column-gap-2 flex-wrap">
+                    <div className="d-flex align-items-center column-gap-2">
+                            <Image
+                                src={coin.image.small}
+                                width={24}
+                                height={24}
+                                objectFit="cover"
+                                alt={`${coin.name} image`}
+                            />
+                        <h1 className="h4 leading mt-2">{`${coin.name} Price`}</h1>
+                    </div>
+                    <div>
+                        <span className="fw-medium">{convertNumberToUSD(coin.market_data.current_price.usd)}</span>
+                    </div>
                 </div>
             </div>
         </div>
