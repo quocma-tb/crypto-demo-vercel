@@ -22,9 +22,9 @@ function SpotTradStatus() {
                     <Tab.Pane className="tab-pane fade " id="OpenOrder" eventKey='first'>
                         <DataTable
                             title={OpenOrderData.title}
-                            columns={OpenOrderData.columns}
+                            columns={OpenOrderData.columns as any}
                             data={OpenOrderData.rows}
-                            defaultSortField="title"
+                            defaultSortFieldId="title"
                             selectableRows={false}
                             highlightOnHover={true}
                         />
@@ -34,7 +34,7 @@ function SpotTradStatus() {
                             title={OrderHistoryData.title}
                             columns={OrderHistoryData.columns}
                             data={OrderHistoryData.rows}
-                            defaultSortField="title"
+                            defaultSortFieldId="title"
                             selectableRows={false}
                             highlightOnHover={true}
                         />
@@ -44,7 +44,7 @@ function SpotTradStatus() {
                             title={TradeHistoryData.title}
                             columns={TradeHistoryData.columns}
                             data={TradeHistoryData.rows}
-                            defaultSortField="title"
+                            defaultSortFieldId="title"
                             selectableRows={false}
                             highlightOnHover={true}
                         />
@@ -54,7 +54,7 @@ function SpotTradStatus() {
                             title={FunData.title}
                             columns={FunData.columns}
                             data={FunData.rows}
-                            defaultSortField="title"
+                            defaultSortFieldId="title"
                             selectableRows={false}
                             highlightOnHover={true}
                         />

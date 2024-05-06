@@ -33,7 +33,7 @@ function OrderBook() {
                                                 title={OrderbookDatafirst.title}
                                                 columns={OrderbookDatafirst.columns}
                                                 data={OrderbookDatafirst.rows}
-                                                defaultSortField="title"
+                                                defaultSortFieldId="title"
                                                 selectableRows={false}
                                                 highlightOnHover={true}
                                             />
@@ -75,7 +75,7 @@ function OrderBook() {
                                                 title={OrderbookDatasecond.title}
                                                 columns={OrderbookDatasecond.columns}
                                                 data={OrderbookDatasecond.rows}
-                                                defaultSortField="title"
+                                                defaultSortFieldId="title"
                                                 selectableRows={false}
                                                 highlightOnHover={true}
                                             />
@@ -119,7 +119,7 @@ function OrderBook() {
                                                 title={OrderbookLongData.title}
                                                 columns={OrderbookLongData.columns}
                                                 data={OrderbookLongData.rows}
-                                                defaultSortField="title"
+                                                defaultSortFieldId="title"
                                                 selectableRows={false}
                                                 highlightOnHover={true}
                                             />
@@ -163,7 +163,7 @@ function OrderBook() {
                                                 title={OrderbookSortData.title}
                                                 columns={OrderbookSortData.columns}
                                                 data={OrderbookSortData.rows}
-                                                defaultSortField="title"
+                                                defaultSortFieldId="title"
                                                 selectableRows={false}
                                                 highlightOnHover={true}
                                             />
