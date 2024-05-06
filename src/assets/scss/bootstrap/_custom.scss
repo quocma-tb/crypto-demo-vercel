@@ -803,6 +803,9 @@
         background-color: var(--card-color);
         border-color: var(--border-color);
         color:var(--primary-color);
+        &:hover {
+            cursor: pointer;
+        }
     }
     &.active{
         .page-link{
