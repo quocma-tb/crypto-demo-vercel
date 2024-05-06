@@ -1,11 +1,6 @@
 'use client'
 import React, { useEffect, useState } from "react"; 
-import PageTitle from "@/core/components/page-title";
 import Chart from "./components/Chart";
-import OrderBook from "./components/OrderBook";
-import Spot from "./components/Spot";
-import SpotTradStatus from "./components/SpotTradStatus";
-import { useSearchParams } from "next/navigation";
 import { insideApi } from "@/core/utils/axios";
 import { Spinner } from "react-bootstrap";
 import { Coin } from "./type/coin";
@@ -73,15 +68,6 @@ function Exchange(props:ExchangeProps) {
             <div className="row g-3 mb-3">
                 <div className="col-md-12">
                     <Chart coin={coin}/>
-                </div>
-            </div>
-            <div className="row g-3 mb-3">
-                <div className="col-xxl-5">
-                    <OrderBook />
-                </div>
-                <div className="col-xxl-7">
-                    <Spot />
-                    <SpotTradStatus />
                 </div>
             </div>
         </div>

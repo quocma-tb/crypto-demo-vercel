@@ -16,7 +16,6 @@ const CoinLineChart = ({coin, days}:{coin:Coin, days:number}) => {
         try{
             setIsLoading(true);
             const rs = await insideApi(`/exchange/api/coin-market?days=${days}&id=${id}`);
-            console.log(rs.data);
             setPriceHistoryData(rs.data);
         }
         catch(error){
