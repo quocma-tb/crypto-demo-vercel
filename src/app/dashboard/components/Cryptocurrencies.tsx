@@ -4,6 +4,8 @@ import DataTable, {TableProps } from 'react-data-table-component';
 import { CoinWithMarketData } from '@/app/api/coins/route';
 import Link from 'next/link'
 import dynamic from 'next/dynamic';
+import { Spinner } from 'react-bootstrap';
+import { useDebounce } from '@/core/hooks/useDebounce';
 
 const Apex = dynamic(() => import('./Apex'), {ssr: false})
 
@@ -27,17 +29,18 @@ const cryptocurrenciesColumns : TableProps<CryptocurrenciesRow>['columns'] = [
         name: "#",
         selector: (row: CryptocurrenciesRow) => row.idx,
         sortable: true,
-        maxWidth: '50px',
+        minWidth: '50px',
     },
     {
         name: "Coin",
         selector: (row: CryptocurrenciesRow) => row.name,
         cell: (row: CryptocurrenciesRow) => <Link href={`/exchange/${row.id}`}><img className="avatar rounded-circle mx-3" src={row.image} alt=""  width={24} height={24} /> <span>{row.name}</span></Link>,
-        sortable: true, minWidth: "200px"
+        sortable: true, 
+        minWidth: "250px"
     },
     {
         name: "Price",
-        selector: (row: CryptocurrenciesRow) => `$${row.current_price}`,
+        selector: (row: CryptocurrenciesRow) => `$${row.current_price?.toLocaleString('it-IT')}`,
         sortable: true,
     },
     {
@@ -58,13 +61,15 @@ const cryptocurrenciesColumns : TableProps<CryptocurrenciesRow>['columns'] = [
     },
     {
         name: "24h Volume",
-        selector: (row: CryptocurrenciesRow) => `$${row.market_cap_change_24h.toLocaleString('it-IT')}`,
-        sortable: true
+        selector: (row: CryptocurrenciesRow) => `$${row.market_cap_change_24h?.toLocaleString('it-IT')}`,
+        sortable: true,
+        minWidth: "200px"
     },
     {
         name: "Market Cap",
-        selector: (row: CryptocurrenciesRow) => `$${row.market_cap.toLocaleString('it-IT')}`,
-        sortable: true
+        selector: (row: CryptocurrenciesRow) => `$${row.market_cap?.toLocaleString('it-IT')}`,
+        sortable: true,
+        minWidth: "200px"
     },
     {
         name: "Last 7 Days",
@@ -76,7 +81,7 @@ const cryptocurrenciesColumns : TableProps<CryptocurrenciesRow>['columns'] = [
                         height: 42,
                         width:100,
                         sparkline: {
-                            enabled: true
+                            enabled: true,
                         },
                     },
                     stroke: {
@@ -86,7 +91,8 @@ const cryptocurrenciesColumns : TableProps<CryptocurrenciesRow>['columns'] = [
     
                 },
                 series: [{
-                    data: row.sparkline_in_7d.price
+                    name: "price",
+                    data: row.sparkline_in_7d?.price || []
                 }],
     
             }
@@ -94,24 +100,28 @@ const cryptocurrenciesColumns : TableProps<CryptocurrenciesRow>['columns'] = [
         sortable: true
     }
 ]
-
+const pageSize = 50;
 function Cryptocurrencies() {
     const [coins, setCoins] = useState<CoinWithMarketData[]>([])
     const cryptocurrenciesRowsData = coins.map((c, idx: number) => ({...c, idx: idx + 1}))
-    const [loading, setLoading] = useState<boolean>(false)
-    const fetchCoins = async () => {
+    const [loading, setLoading] = useState<boolean>(true)
+    const [page, setPage] = useState<number>(1)
+    const debouncePageValue = useDebounce(page, 300)
+    const fetchCoins = async (page=1, size = pageSize) => {
         setLoading(true)
         const searchParams = new URLSearchParams();
         searchParams.append('price_change_percentage', '1h,24h,7d')
         searchParams.append('sparkline', 'true')
-        searchParams.append('per_page', '50')
+        searchParams.append('page', String(page))
+        searchParams.append('per_page', String(size))
         const coins = await fetch(`/api/coins?${searchParams.toString()}`).then(res => res.json()).finally(() => setLoading(false))
         setCoins(coins)
     }
-    
+
     useEffect(() => {
-        fetchCoins()
-    }, [])
+        fetchCoins(debouncePageValue)
+    }, [debouncePageValue])
+
     return (
         <div className="row g-3 mb-3 row-deck">
             <div className="col-xl-12">
@@ -132,30 +142,39 @@ function Cryptocurrencies() {
                                 <div className="col-sm-12">
                                     <DataTable
                                         progressPending={loading}
+                                        progressComponent={
+                                            <div style={{minHeight: 350}}>
+                                                <Spinner animation='grow' variant='primary'/>
+                                            </div>
+                                        }
                                         columns={cryptocurrenciesColumns}
                                         data={cryptocurrenciesRowsData}
                                         fixedHeader
-                                        fixedHeaderScrollHeight='500px'
+                                        fixedHeaderScrollHeight='400px'
                                         selectableRows={false}
                                         highlightOnHover={true}
                                         pagination={false}
                                     />
                                 </div>
                             </div>
-                            {/* <div className="row mt-3 ">
+                            <div className="row mt-3 ">
                                 <div className="col-sm-12 col-md-5" style={{ float: 'left' }}>
-                                    <div className="dataTables_info" id="myDataTable_info" role="status" aria-live="polite">Showing 1 to 7 of 7 entries</div>
+                                    <div className="dataTables_info" id="myDataTable_info" role="status" aria-live="polite">Showing {pageSize} items / page</div>
                                 </div>
                                 <div className="col-sm-12 col-md-7 " >
                                     <div className="dataTables_paginate paging_simple_numbers" id="myDataTable_paginate" style={{ float: 'right' }}>
                                         <ul className="pagination">
-                                            <li className="paginate_button page-item previous disabled" id="myDataTable_previous"><a href="#!" className="page-link">Previous</a></li>
-                                            <li className="paginate_button page-item active"><a href="#!" className="page-link">1</a></li>
-                                            <li className="paginate_button page-item next disabled" id="myDataTable_next"><a href="#!" className="page-link">Next</a></li>
+                                            {page > 1 ? (
+                                                <li className="paginate_button page-item previous " onClick={() => setPage(page => page - 1)} id="myDataTable_previous"><span className='page-link'>Previous</span></li>
+                                            ) : null}
+                                            <li className="paginate_button page-item active"><span className="page-link">{page}</span></li>
+                                            {coins.length >= pageSize ? (
+                                                <li className="paginate_button page-item next " onClick={() => setPage(page => page + 1)} id="myDataTable_next"><span className="page-link">Next</span></li>
+                                            ) : null}
                                         </ul>
                                     </div>
                                 </div>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 </div>
