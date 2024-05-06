@@ -12,7 +12,7 @@ function Sidebar(props) {
 
     return (<div id="mainsidemenu" className={`sidebar py-2 py-md-2 me-0 border-end ${isSidebarMini ? "sidebar-mini" : ""}`}>
         <div className="d-flex flex-column h-100">
-            <a href={process.env.PUBLIC_URL + "/"} className="mb-0 brand-icon" >
+            <a href={"/"} className="mb-0 brand-icon" >
                 <span className="logo-icon">
                     <i className="fa fa-gg-circle fs-3"></i>
                 </span>
