@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { Nav, Tab } from 'react-bootstrap';
 import DataTable from 'react-data-table-component';
