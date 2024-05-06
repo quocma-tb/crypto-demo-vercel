@@ -68,7 +68,7 @@ function Sidebar(props) {
                     menuData.menu.map((d, i) => {
                         if (d.children.length === 0) {
                             return <li key={"dsfshsdg" + i} className=" collapsed">
-                                <Link href={baseUrl + "/" + d.routerLink[0]} className={`m-link ${("/" + d.routerLink[0] === activekey) ? "active" : ""}`} >
+                                <Link href={"/" + d.routerLink[0]} className={`m-link ${("/" + d.routerLink[0] === activekey) ? "active" : ""}`} >
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox={d.viewBox}>
                                         <path xmlns="http://www.w3.org/2000/svg" d={d.iconClasss} style={{ fill: 'var(--primary-color)' }} data-st="fill:var(--chart-color4);"></path>
                                         <path xmlns="http://www.w3.org/2000/svg" className="st0" d={d.iconClass}></path>
