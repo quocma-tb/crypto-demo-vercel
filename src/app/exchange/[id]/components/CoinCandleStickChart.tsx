@@ -54,7 +54,36 @@ const CoinCandleStickChart = ({coin, days}:{coin:Coin, days:number;}) => {
               tooltip: {
                 enabled: true
               },
-              opposite:true
+              opposite:true,
+              labels:{
+                formatter:(val) => {
+                    return `$${val.toFixed(2)}`
+                }
+              }
+            },
+            tooltip:{
+                custom: function({ seriesIndex, dataPointIndex, w }) {
+                    const o = w.globals.seriesCandleO[seriesIndex][dataPointIndex]
+                    const h = w.globals.seriesCandleH[seriesIndex][dataPointIndex]
+                    const l = w.globals.seriesCandleL[seriesIndex][dataPointIndex]
+                    const c = w.globals.seriesCandleC[seriesIndex][dataPointIndex]
+                    return (
+                      '<div class="apexcharts-tooltip-candlestick p-3">' +
+                      '<div>Open: <span class="value fw-bold">' +
+                      `$${o}` +
+                      '</span></div>' +
+                      '<div>High: <span class="value fw-bold">' +
+                      `$${h}` +
+                      '</span></div>' +
+                      '<div>Low: <span class="value fw-bold">' +
+                      `$${l}` +
+                      '</span></div>' +
+                      '<div>Close: <span class="value fw-bold">' +
+                      `$${c}` +
+                      '</span></div>' +
+                      '</div>'
+                    )
+                  }
             }
           }
         return {seriesData, optionsData};

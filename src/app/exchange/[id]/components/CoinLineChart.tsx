@@ -54,7 +54,12 @@ const CoinLineChart = ({coin, days}:{coin:Coin, days:number}) => {
               tooltip: {
                 enabled: true
               },
-              opposite:true
+              opposite:true,
+              labels:{
+                formatter:(val) => {
+                    return `$${val.toFixed(2)}`
+                }
+              }
             }
           }
         return {seriesData,optionsData}
